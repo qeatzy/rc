@@ -1,0 +1,6 @@
+zsh -c bindkey
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-history
+"^N"-"^P" self-insert
+"^N" down-line-or-history
+"^P" up-line-or-history

@@ -11,3 +11,7 @@ rp () { # refresh prompt
 PROMPT="%F{${1:-12}}%v %T %(1j.%j.)%(!.#.$) %(?..%?)%f" # **need 256 color** trimed PWD, time, job number, $, error code
 }
 rp 13
+
+
+bindkey "^P" up-line-or-search
+bindkey "^N" down-line-or-history

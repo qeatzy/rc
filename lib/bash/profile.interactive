@@ -4,6 +4,7 @@ if [ -n "$depth" ]; then unset VIMRUNTIME; fi
 
 alias vi=vim
 alias v-='vim -'
+alias v.='vim .'
 # vim profiling
  vp() { \vim --startuptime p.out -c 'set bt=nofile' -c 'call setline(1, "p.out")' -c 'nn f gfG' -c 'nn q ZZ' "$@"; }
 # vp
