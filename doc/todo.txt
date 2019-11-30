@@ -1,0 +1,6 @@
+bash
+zsh
+git
+ssh
+
+rc + config (static vs dynamic)

@@ -1,0 +1,24 @@
+sys.stdout = open('file', 'w')  # redirect
+sys.stdout = sys.__stdout__  # to get back
+To redirect at the file descriptor level, os.dup2() could be used:
+ -- os.system('echo hello') also redirected.
+You may need flush(), maybe c level flush() too.
+https://stackoverflow.com/questions/4675728/redirect-stdout-to-a-file-in-python
+
+(excellent) Redirecting all kinds of stdout in Python - Eli Bendersky's website
+https://eli.thegreenplace.net/2015/redirecting-all-kinds-of-stdout-in-python/
+|| https://dzone.com/articles/redirecting-all-kinds-stdout
+https://stackoverflow.com/questions/5081657/how-do-i-prevent-a-c-shared-library-to-print-on-stdout-in-python/17954769#17954769
+sys.std* are used only by Python code, whereas C libraries use FDs 0 through 2 directly.
+
+f = open(filename,'w')
+print >>f, 'whatever'     # Python 2.x
+print('whatever', file=f) # Python 3.x
+  print(*objects, sep=' ', end='\n', file=sys.stdout, flush=False)
+Or   Don't use print, use logging
+https://stackoverflow.com/questions/7152762/how-to-redirect-print-output-to-a-file-using-python
+
+logging
+https://stackoverflow.com/a/48053167
+https://docs.python.org/3.5/howto/logging.html
+https://docs.python.org/3/howto/logging.html

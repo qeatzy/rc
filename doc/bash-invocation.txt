@@ -1,0 +1,35 @@
+
+shell startup script order
+https://askubuntu.com/questions/463462/sequence-of-scripts-sourced-upon-login
+tested on 
+add below line in candidate script
+    echo $0 "${BASH_SOURCE[@]}" >> ~/q.out
+    echo $-  >> ~/q.out
+# ssh vpn
+-bash /etc/profile
+-bash /root/.profile
+-bash /root/.bashrc /root/.profile
+himBH
+# ssh vpn -t "date >> q.out"
+bash /root/.bashrc
+hBc
+# ssh vpn -t zsh
+bash /root/.bashrc
+hBc
+
+"ls
+1 add one in ~/.bashrc or ~/.zshrc (or other file always been source, see above test)
+. my-git-managed/.profile 2>/dev/null  # in case file not exists
+2 in my-git-managed/.profile,
+    source based on shell type
+    invoke zsh if interactively.
+
+to invoke bash with different profile (.bashrc)
+@1 bash --rcfile path/to/.bashrc
+@2 export BASH_ENV=path/to/.bashrc  (Invoked non-interactively)
+
+to invoke zsh with different profile (.bashrc)
+export ZDOTDIR=dirctory-containing-.zshrc
+
+POSIX requires that the . command exits the shell if it can't open the file for reading and requires that the file be found through a search of the directories in $PATH if the provided path doesn't contain a /.
+https://unix.stackexchange.com/questions/58514/what-is-the-difference-between-and-source-in-shells

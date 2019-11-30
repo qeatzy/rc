@@ -1,0 +1,16 @@
+asyncssh: python3.6+
+paramiko:
+
+pip install ssh2-python # install fail on cygwin, python3.6.9
+  error: conflicting types for ‘accept’.
+    package included libssh2/src/* conflict with cygwin's library.
+pip install asyncssh    # install success
+pip install paramiko    # need sys package libffi-devel, install success
+
+
+compare ssh2-python & paramiko
+The State of Python SSH Libraries. Posted on August 26, 2017
+https://parallel-ssh.org/post/ssh2-python/
+
+https://github.com/ParallelSSH/ssh2-python
+https://github.com/ronf/asyncssh

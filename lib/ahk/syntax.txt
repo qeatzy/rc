@@ -1,0 +1,6 @@
+
+goto? gosub? subroutines vs functions? 
+https://autohotkey.com/board/topic/48341-functions-subroutines/
+
+lable?
+https://autohotkey.com/board/topic/44536-calling-functions-from-the-hotkey-command/

@@ -1,0 +1,5 @@
+
+bash -c 'which which'   # /usr/bin/which
+zsh -c 'which which'    # which: shell built-in command
+https://stackoverflow.com/questions/14196061/different-behavior-of-which-command-in-zsh-and-bash
+a shell command is either 1 alias 2 function 3 executable

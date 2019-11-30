@@ -1,0 +1,57 @@
+py3 print('\n'.join('\n'.join("PROMPT='%{} $'".format(chr(x)) for x in [s,s-32]) for s in range(97,123)))
+
+%# $ if not root else #
+%d full path
+%~ full path
+%j number of jobs
+%T time in 24 hours
+%# Equivalent to '%(!.#.%%)'. 
+%f - reset the foreground color to the default
+%F{yellow} - make the foreground color yellow
+https://superuser.com/questions/49092/how-to-format-the-path-in-a-zsh-prompt
+%(x.true-text.false-text)
+http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+PROMPT='%(?.ok.error code %?)'  # return 3 to test
+PROMPT='%(1?.1.not one %?)'
+PROMPT='%(!.%F{red}red.%F{cyan}cyan) '
+PROMPT='%(!.root.notroot) '
+PROMPT='%(!..notroot) '
+PROMPT='%(!.root.) '
+PROMPT='%(1j.%j jobs at least 1 job.less than 1 job) '
+PROMPT='%(1j.%j.) %(!.#.$) %(?..%? )'
+PROMPT='%~ %T %(1j.%j.)%(!.#.$) %(?..%? )'
+PROMPT='%c %T %(1j.%j.)%(!.#.$) %(?..%? )'
+RPROMPT='%D'
+RPROMPT=''
+
+(use function inside prompt)
+setopt PROMPT_SUBST
+in your .zshrc, man zshall explains it in the PROMPT EXPANSION section:
+https://superuser.com/questions/142099/get-function-into-ps1-zsh
+
+
+%v
+setopt PROMPT_SUBST  vs psvar and %v
+https://unix.stackexchange.com/questions/157693/howto-include-output-of-a-script-into-the-zsh-prompt
+
+Prompt expansion isn't recursive. 
+https://unix.stackexchange.com/questions/454253/process-prompt-directives-inside-psvar-without-prompt-subst
+
+http://zsh.sourceforge.net/Intro/intro_14.html
+ These special escape sequences can also be used with the -P option to print:
+print -P %h tty%l
+Also available is the RPROMPT parameter. If this is set, the shell puts a prompt on the right side of the screen. 
+The POSTEDIT parameter is printed whenever the editor exits. This can be useful for termcap tricks. To highlight the prompt and command line while leaving command output unhighlighted, try this:
+
+% POSTEDIT=`echotc se`
+% PROMPT='%S%% '
+
+
+http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+    %d shows the entire path.
+    %~ shows the path with any variables replaced.
+${PWD/#$HOME/~}
+$(cmd)
+
+precmd hook
+https://superuser.com/questions/735660/whats-the-zsh-equivalent-of-bashs-prompt-command

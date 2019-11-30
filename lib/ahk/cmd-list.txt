@@ -1,0 +1,2 @@
+https://www.autohotkey.com/docs/commands/_SingleInstance.htm
+#SingleInstance Force | Ignore | Off

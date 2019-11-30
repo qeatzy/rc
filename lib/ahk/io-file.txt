@@ -1,0 +1,10 @@
+
+performance similar (on AutoHotkey_L, loop-read is optimized)
+FileRead vs Loop Read
+https://autohotkey.com/board/topic/82483-fileread-vs-loop-read/page-2
+Lexikos: The results are likely to vary between AutoHotkey 1.0 and AutoHotkey_L, since in the latter, loop-read uses my optimized text file reading code whereas FileRead converts the whole file as one chunk. 1.0 uses different code and doesn't do conversions between code pages. (Conversions are needed for ANSI/UTF-8 -> UTF-16 in Unicode versions of AutoHotkey.)
+
+https://www.autohotkey.com/docs/commands/FileRead.htm
+https://www.autohotkey.com/docs/commands/LoopReadFile.htm
+https://www.autohotkey.com/docs/commands/FileReadLine.htm
+https://www.autohotkey.com/docs/commands/LoopParse.htm

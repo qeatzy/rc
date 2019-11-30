@@ -1,0 +1,54 @@
+
+tmux list-windows -F "#I #W"
+tmux list-windows -F "#I #W" > ~/xx
+cygpath -w ~/xx |sed 's=\\=/=g'
+E:/cygwin64/home/zyq3e/xx
+TODO fails if create window in between
+
+     set-hook [-gu] [-t target-session] hook-name command
+tmux set-hook window-renamed 'run -b "/cygdrive/e/notes/task/tmux/hook_rename.sh #I \"#W\""'
+tmux set-hook window-pane-changed 'run -b /cygdrive/e/notes/task/tmux/hook_rename_all.sh'
+tmux set-hook window-unlinked 'run -b /cygdrive/e/notes/task/tmux/hook_rename_all.sh'
+tmux show-hooks
+# window-linked override window-pane-changed
+# tmux set-hook window-linked 'run -b "/cygdrive/e/notes/task/tmux/hook_rename.sh #I \"#W\""'
+tmux set-hook session-windows-changed 
+tmux set-hook client-session-changed 
+tmux set-hook -u window-unlinked
+tmux set-hook -u window-pane-changed
+tmux set-hook -u session-windows-changed
+tmux set-hook -u client-session-changed
+tmux set-hook -u window-linked
+tmux set-hook -u window-renamed
+tmux list-keys
+man tmux
+# tmux set-hook window-renamed 'run -b "/cygdrive/e/notes/task/tmux/hook_rename.sh #I #W"'
+# tmux set-hook window-linked 'run -b "/cygdrive/e/notes/task/tmux/hook_rename.sh #I #W"'
+
+no after-* hooks
+window-pane-changed works
+
+For other people wanting to run a command whenever the user changes a pane somehow, these 3 hooks did it for me:
+tmux set-hook window-pane-changed ...
+tmux set-hook session-windows-changed ...
+tmux set-hook client-session-changed ...
+https://github.com/tmux/tmux/issues/1083
+
+(not work, seems name of hook might changed)
+https://gist.github.com/ThomasAdam/4007114
+{{{
+'before-new-window'
+The manual's list of hooks, as of 2.6, are only the specialty hooks. I had to re-read it a few times. The command hooks themselves aren't listed one-by-one.
+
+tmux allows commands to run on various triggers, called hooks. Most
+tmux commands have an after hook and there are a number of hooks not
+associated with commands.
+
+A command's after hook is run after it completes, except when the com‐
+mand is run as part of a hook itself. They are named with an ‘after-’
+prefix...
+
+So if there is a command, there is (most of the time) an after- hook for it.
+}}}
+
+vim: cms=#%s

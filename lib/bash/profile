@@ -1,0 +1,26 @@
+# /cygdrive/e/notes/.bvimbrc
+# add one in ~/.bashrc or ~/.zshrc (or other file always been source, see above test)
+# . name-of-current-script 2>/dev/null
+# see rc/doc/bash-invocation.txt for further detail
+
+ll() { ls -F -ahl "$@"; }  #  --color=auto
+# wh() { which "$@"; }
+wh() { command -V "$@"; }
+
+py() { python3 "$@"; }
+pip() { python3 -m pip "$@"; }
+
+gi () { if (($# == 0)); then git status; else git "$@"; return $?; fi }
+
+# meta_s from ~/notes/task/bash/meta_source.sh
+if [ -n "$ZSH_VERSION" ]; then
+    meta_s() { eval ' s() { source "${(%):-%x}"; }'; }; meta_s
+    case "$0" in /*) RCROOT="$0" ;;*) RCROOT="$PWD/$0" ;; esac
+    RCROOT=${RCROOT%/*}
+    source "$RCROOT/profile.zsh"
+elif [ -n "$BASH_VERSION" ]; then
+    meta_s() { eval 'CALLER="${BASH_SOURCE[1]}"; s() { source "$CALLER"; }'; }; meta_s
+    case "${BASH_SOURCE[0]}" in /*) RCROOT="${BASH_SOURCE[0]}" ;;*) RCROOT="$PWD/${BASH_SOURCE[0]}" ;; esac
+    RCROOT=${RCROOT%/*}
+    source "$RCROOT/profile.bash"
+fi

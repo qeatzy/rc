@@ -1,0 +1,3 @@
+A_ScriptHwnd 
+The built-in variable A_ScriptHwnd contains the unique ID (HWND) of the script's main window.
+https://www.autohotkey.com/docs/Program.htm

@@ -1,0 +1,19 @@
+# vim: ft=bash
+
+if [ -n "$depth" ]; then unset VIMRUNTIME; fi
+
+alias vi=vim
+alias v-='vim -'
+# vim profiling
+ vp() { \vim --startuptime p.out -c 'set bt=nofile' -c 'call setline(1, "p.out")' -c 'nn f gfG' -c 'nn q ZZ' "$@"; }
+# vp
+# vp -u NONE
+# vp --clean
+# vp -u NORC
+
+ep() { d="${2:-:}"; p="${1:-$PATH}$d"; while [ "$p" ]; do echo "${p%%$d*}"; p="${p#*$d}"; done; };
+
+alias c-='cd ~-'
+alias c.='cd ..'
+alias c..='cd ../..'
+alias c...='cd ../../..'

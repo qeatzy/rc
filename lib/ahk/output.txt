@@ -1,0 +1,4 @@
+MsgBox
+ToolTip
+https://www.autohotkey.com/docs/commands/ToolTip.htm
+SetTimer, RemoveToolTip, -5000

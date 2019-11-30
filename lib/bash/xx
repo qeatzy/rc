@@ -1,0 +1,4 @@
+
+tmp=${BASH_SOURCE[0]}
+echo ${tmp%/*}
+echo ${${BASH_SOURCE[0]}%/*}

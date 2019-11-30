@@ -1,0 +1,13 @@
+
+format option
+git log --graph --pretty=format:'%h - %d %s (%cr) <%an>'
+Using Vim to View Git Commits | Sal Ferrarello
+https://salferrarello.com/using-vim-view-git-commits/
+
+search
+git list affected file of a commit
+@@
+git diff-tree --no-commit-id --name-only -r bd61ad98
+git diff-tree --no-commit-id --name-only -r HEAD
+git diff-tree --no-commit-id --name-only -r HEAD~1
+https://stackoverflow.com/questions/424071/how-to-list-all-the-files-in-a-commit

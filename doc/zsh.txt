@@ -1,0 +1,12 @@
+ZDOTDIR
+simliar to bash --rcfile
+ssh -t host ZDOTDIR=/path/to/rcfile zsh
+https://stackoverflow.com/questions/2727172/how-to-load-different-zshrc-file-via-commandline-option
+https://unix.stackexchange.com/questions/131716/start-zsh-with-a-custom-zshrc
+@Le_Katz, ZDOTDIR=x zsh only sets ZDOTDIR for that zsh process (it adds
+ ZDOTDIR=x to the environment that that zsh receives), there's nothing to put
+ back after that zsh has exited (and .zlogout is only evaluated for login
+ shells) you might still want to unset ZDOTDIR from within your startup
+ scripts if you don't want other zsh instanced called by that zsh to inherit
+ it. – Stéphane Chazelas May 30 '14 at 13:50
+

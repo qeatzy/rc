@@ -1,0 +1,29 @@
+https://www.python.org/downloads/windows/
+as of 2019-11-25
+ 3.6.8 download links below, no 3.6.9 download,
+https://www.python.org/ftp/python/3.6.8/python-3.6.8-embed-win32.zip
+https://www.python.org/downloads/release/python-369/
+ Python 3.6.9 is the latest security fix release of Python 3.6.
+    Release Date: July 2, 2019
+ Python 3.6.8 was the final bugfix release for 3.6.
+
+"gvim: to make `:py3` work, python36.dll directory must in system's PATH.
+"gvim on Windows is 32-bit only, make sure python36.dll is 32-bit too.
+
+
+zip (embed) version has no pip (but can be installed, see below)
+installer has pip
+https://stackoverflow.com/questions/32639074/why-am-i-getting-importerror-no-module-named-pip-right-after-installing-pip
+@Subin_Learner I had to use the installer - the ZIP version of Python simply doesn't work with PIP afaict – PeterX Nov 27 '18 at 4:13
+The ensurepip module was added in version 3.4 and then backported to 2.7.9.
+
+install pip for embeded python (zip version python)
+https://stackoverflow.com/questions/32639074/why-am-i-getting-importerror-no-module-named-pip-right-after-installing-pip
+sed -i 's/#\s*import site/import site/' *._pth
+"_pth" file needs a touch: add ".\Lib\site-packages\" below "." – Yılmaz Durmaz Oct 10 '18 at 10:01
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+./python get-pip.py
+./python -m pip list
+./Scripts/pip install requests
+@@ embeded python has no tkinter, pip install fail, maybe need something
+    similar to 'apt-get install python3-tk'.

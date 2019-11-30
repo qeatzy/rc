@@ -1,0 +1,19 @@
+https://www.autohotkey.com/docs/misc/Remap.htm
+https://www.autohotkey.com/docs/commands/Send.htm
+
+n & o::Run, Notepad
+n & #o::Run Notepad
+For some reason you can define "n & #o" but not "#n & o".
+https://autohotkey.com/board/topic/40970-problem-with-2-keys-as-a-hotkey/
+
+~Alt::Suspend, On
+~Alt Up::Suspend, Off
+https://stackoverflow.com/questions/14345678/how-to-disable-keyboard-remap-if-a-modifier-key-is-down?rq=1
+
+~LAlt up::return
+https://www.autohotkey.com/boards/viewtopic.php?t=13587
+
+
+https://www.autohotkey.com/docs/commands/Hotkey.htm
+You are looking for the hotkey command.
+https://autohotkey.com/board/topic/22584-how-to-remap-keys-dynamically/

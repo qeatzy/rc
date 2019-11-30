@@ -1,0 +1,14 @@
+
+bash/zsh redirect
+https://stackoverflow.com/questions/59035324/how-to-redirect-stdout-of-zsh-bash-and-restore-later/59035498#59035498
+exec 3>&1 >log
+pwd
+tee --help
+vim --help
+echo hello
+pwd
+exec >&3
+
+python-redirect   see  python-io-redirect.txt
+sys.stdout = open('file', 'w')  # redirect
+sys.stdout = sys.__stdout__  # to get back

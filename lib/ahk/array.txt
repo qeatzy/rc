@@ -1,0 +1,51 @@
+{{{
+https://www.autohotkey.com/docs/Objects.htm#Usage_Simple_Arrays
+Simple Arrays [v1.1.21+]
+Create an array:
+    Array := [Item1, Item2, ..., ItemN]
+    Array := Array(Item1, Item2, ..., ItemN)
+
+Retrieve an item:
+    Value := Array[Index]
+
+Assign an item:
+    Array[Index] := Value
+
+Insert one or more items at a given index using the InsertAt method:
+    Array.InsertAt(Index, Value, Value2, ...)
+
+Append one or more items using the Push method:
+    Array.Push(Value, Value2, ...)
+
+Remove an item using the RemoveAt method:
+    RemovedValue := Array.RemoveAt(Index)
+
+Remove the last item using the Pop method:
+    RemovedValue := Array.Pop()
+
+If the array is not empty, MinIndex and MaxIndex/Length return the lowest and highest index currently in use in the array. Since the lowest index is nearly always 1, MaxIndex usually returns the number of items. However, if there are no integer keys, MaxIndex returns an empty string whereas Length returns 0. Looping through an array's contents can be done either by index or with a For-loop. For example:
+
+array := ["one", "two", "three"]
+
+; Iterate from 1 to the end of the array:
+Loop % array.Length()
+    MsgBox % array[A_Index]
+
+; Enumerate the array's contents:
+For index, value in array
+    MsgBox % "Item " index " is '" value "'"
+}}}
+
+performance, Indeed Push is faster if you use SetCapacity.
+https://www.autohotkey.com/boards/viewtopic.php?f=5&t=25285
+
+tutorial on array
+https://riptutorial.com/autohotkey/example/15621/creating-and-initializing-simple-arrays
+
+One important point is that an array "key" is not case sensitive.
+https://www.autohotkey.com/boards/viewtopic.php?t=33884
+
+instead of read lines into array, then search in array.
+you can read a file as a string, then use mutli-line RegExMatch.
+https://www.autohotkey.com/boards/viewtopic.php?t=23286
+There are often used combine items into a single string instead of an array. You can check if a value exists in this "array" by searching in this string:

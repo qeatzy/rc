@@ -1,0 +1,12 @@
+
+https://www.autohotkey.com/docs/commands/RegExMatch.htm
+
+I rewrite it without slow .MaxIndex() method.
+https://www.autohotkey.com/boards/viewtopic.php?t=23286
+
+`n	Switches from the default newline character (`r`n) to a solitary linefeed (`n), which is the standard on UNIX systems. The chosen newline character affects the behavior of anchors (^ and $) and the dot/period pattern.
+https://www.autohotkey.com/docs/misc/RegEx-QuickRef.htm#Options
+(use `n option) RegEx - ^ doesn't match at the beginning of all new lines - Ask for Help - AutoHotkey Community
+https://autohotkey.com/board/topic/17237-regex-doesnt-match-at-the-beginning-of-all-new-lines/
+? Note the s Option which is (Dot Matches All).
+? The 'x' option, which lets you spread a regex across multiple lines.

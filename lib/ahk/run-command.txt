@@ -1,0 +1,5 @@
+
+greate post, pipe, hide, cmd /k vs /c, RunWait
+https://www.autohotkey.com/boards/viewtopic.php?t=4075
+
+https://www.autohotkey.com/docs/commands/Run.htm

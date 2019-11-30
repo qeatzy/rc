@@ -1,0 +1,17 @@
+# https://superuser.com/questions/268776/how-do-i-configure-ssh-so-it-dosent-try-all-the-identity-files-automatically
+# ~/.ssh/config
+IdentitiesOnly yes
+
+Host vpn
+    Hostname 155.138.229.11
+    User root
+    Port 22
+
+Host k20
+    Hostname 192.168.0.101
+    Port 8022
+
+Host mi6
+    Hostname 192.168.0.102
+    Port 8022
+

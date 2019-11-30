@@ -1,0 +1,31 @@
+{{{ match title, case insensitive can only achieved with regex.
+https://www.autohotkey.com/boards/viewtopic.php?t=50635
+Regardless of the current TitleMatchMode, WinTitle, WinText, ExcludeTitle and ExcludeText are case sensitive. The only exception is the case-insensitive option of the RegEx mode;
+SetTitleMatchMode RegEx 
+randomsale := 15
+#if (randomsale = 15) AND WinActive("(notepad)$")!
+msgbox, active
+return 
+..
+https://autohotkey.com/board/topic/67165-settitlematchmode-and-case-sensitivity/
+    var:="untitled - notepad"
+    SetTitleMatchMode, RegEx
+    WinWaitActive, i)%var%
+    MsgBox Active
+}}}
+
+
+Don't you have to close the directive? Or is it not necessary? Like below?
+No. Any #ifwinactive automatically overrides the previous #ifwinactive directive.
+    #ifwinactive vs ifwinactive
+    https://www.autohotkey.com/boards/viewtopic.php?t=43138
+In your example, the {} after #ifwinactive aren't needed.
+    #ifwinactive vs ifwinactive
+    https://autohotkey.com/board/topic/78534-difference-between-ifwinactive-and-ifwinactive/
+
+https://www.autohotkey.com/docs/commands/SetTitleMatchMode.htm
+SetTitleMatchMode mode; 1 prefix 2 contain 3 regex (1 & 2 case sensitive)
+SetTitleMatchMode speed; fast slow
+https://www.autohotkey.com/docs/commands/WinSetTitle.htm
+WinSetTitle, NewTitle       ; use last found window
+WinSetTitle, WinTitle, WinText, NewTitle , ExcludeTitle, ExcludeText

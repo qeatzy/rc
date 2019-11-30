@@ -1,0 +1,30 @@
+The Top of the Script (the Auto-execute Section)
+https://www.autohotkey.com/docs/Scripts.htm#auto
+
+The "Last Found" Window
+https://www.autohotkey.com/docs/misc/WinTitle.htm#LastFoundWindow
+
+TODO
+what is ` in autohotkey expression.
+msgbox % ErrorLevel "`n" url["a"] "`n" file["a"]
+https://autohotkey.com/board/topic/109436-correct-way-of-creatingusing-arrays-in-ahk/
+and here
+Run rundll32.exe shell32.dll`,Control_RunDLL desk.cpl`,`, 3  ;
+Opens Control Panel > Display Properties > Settings
+https://www.autohotkey.com/docs/commands/Run.htm
+
+When exactly are variable names enclosed in percent signs?
+https://www.autohotkey.com/docs/FAQ.htm#percent
+
+"=" was the old "standard" equals that assigns text, ":=" is the new "expression" equals that assigns with expression syntax.
+there is no actual "boolean" type in AHK. true is 1, false is 0.
+
+%
+https://www.autohotkey.com/docs/FAQ.htm#percent
+$
+k::send k  ; result in infinite recursion
+$k::send k ; fine, use this for selective remapping
+
+Splitting a Long Line into a Series of Shorter Ones
+https://www.autohotkey.com/docs/Scripts.htm#continuation
+

@@ -1,0 +1,2 @@
+async keyword was introduced in Python 3.5, you should use asyncio.corutine in earlier versions.
+https://stackoverflow.com/questions/47988109/async-with-in-python-3-4

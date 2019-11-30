@@ -1,0 +1,5 @@
+
+A. My local machine at home
+B. The SSH gateway server at school
+C. A workstation in a lab, only reachable through B
+https://superuser.com/questions/332850/ssh-as-socks-proxy-through-multiple-hosts

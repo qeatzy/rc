@@ -1,0 +1,8 @@
+
+disable pager for a command
+    git config --global pager.<command> false
+    git config --global pager.status true
+https://stackoverflow.com/a/51408214
+disable pager altogether.
+    git config --global core.pager ''
+https://til.hashrocket.com/posts/skwvm5hkvy-configuring-the-pager

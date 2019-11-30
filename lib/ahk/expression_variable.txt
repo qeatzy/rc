@@ -1,0 +1,23 @@
+
+https://www.autohotkey.com/boards/viewtopic.php?t=44368
+IniWrite, a[1]`,a[2], asdf.ini, Other, A
+  A=5,3         # need this
+  A=a[1],a[2]   # got this
+How do I properly address an array element in a Command call? 
+You need to force it into expression syntax, then you need to write it in
+expression syntax, like this:
+  IniWrite, % a[1] "," a[2], asdf.ini, Other, A
+Thanks! Is there also a way to use arrays as Output variables (which don't allow forced expression syntax, according to the docs)? 
+  In that case, you have to use regular variables, then assign them to your array elements afterwards.
+..
+Any command that expects an InputVar/OutputVar requires a variable.
+https://autohotkey.com/board/topic/64901-ahk-l-pass-array-element-to-string-functions/
+
+Loop % (array:=["this", "is", "a", "test"]).length()
+https://www.autohotkey.com/boards/viewtopic.php?t=41752
+
+
+== is case-sensitive-equal (in expression)?
+Yes. But = is not.
+https://autohotkey.com/board/topic/18265-compare-two-variables/
+

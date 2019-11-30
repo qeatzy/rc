@@ -1,0 +1,10 @@
+change login shell for current user to zsh
+chsh -s zsh  # maybe need fullpath, chsh -s (which zsh)
+
+How to login by ssh when default shell is wrong - Unix & Linux Stack Exchange
+bypass login shell impossible. 
+@1 login with another sudoer user, then fix login shell setting.
+@2 You need to reboot with custom kernel parameters or some local console.
+
+https://unix.stackexchange.com/questions/248160/how-to-use-a-non-default-login-shell-for-ssh-login
+If your login shell can't be executed on some machine, then you can't log into it over SSH, or by most other methods for that matter. The SSH server always executes your login shell. If you pass a command on the ssh command line then the login shell is executed with -c and the command string¹ as arguments; otherwise the login shell is executed as a login shell with no argument.

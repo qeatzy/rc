@@ -1,0 +1,4 @@
+libffi-devel    # needed by 'pip install paramiko' #include <ffi.h>
+
+let cygin and main notes dir at same driver on windows.
+reason, travers file system is much faster. dirbuf tree.
