@@ -1,6 +1,7 @@
 # vim: ft=bash
 
 if [ -n "$depth" ]; then unset VIMRUNTIME; fi
+export DEPTH=$((DEPTH+1))
 
 alias vi=vim
 alias v-='vim -'

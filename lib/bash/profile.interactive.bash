@@ -1,5 +1,7 @@
 # vim: ft=bash
 
+if [ -n "$RUNZSH" -a "$DEPTH" -lt 2 ]; then exec zsh; fi
+
 # let $BASH_ENV='/cygdrive/e/nnotes/dev/rc/lib/bash/profile'
 # echo $BASH_ENV
 
