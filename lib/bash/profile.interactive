@@ -1,7 +1,8 @@
 # vim: ft=bash
 
-if [ -n "$depth" ]; then unset VIMRUNTIME; fi
+export QEATZY=1
 export DEPTH=$((DEPTH+1))
+if [ -n "$depth" ]; then unset VIMRUNTIME; fi
 
 alias vi=vim
 alias v-='vim -'
