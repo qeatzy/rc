@@ -24,12 +24,40 @@ hBc
     source based on shell type
     invoke zsh if interactively.
 
+for non-login non-interactive bash shell (eg, bash -c date),
+only $BASH_ENV is sourced.
+
 to invoke bash with different profile (.bashrc)
 @1 bash --rcfile path/to/.bashrc
 @2 export BASH_ENV=path/to/.bashrc  (Invoked non-interactively)
 
 to invoke zsh with different profile (.bashrc)
 export ZDOTDIR=dirctory-containing-.zshrc
+
+sh only source script on login shell.
+/etc/profile and ~/.profile
+dash (sh on debian-based linux), set ENV to script 
+    to source upon interactive login shell.
+Startup and termination files used by the various Unix shells
+https://kb.iu.edu/d/abdy
+
+to `su - otheruser` but still use your own startup script?
+conditionally load based on environment variable.
+below working.
+if [ "QEATZY" ]; then RUNZSH=1; case "$PATH" in */pkg/bin:*) ;; *) export PATH="/home/qeatzy/pkg/bin:$PATH"; esac; export DEPTH=; . /home/qeatzy/.vim/rc/lib/bash/profile; return $?; fi
+but `su` and `su -` different, `su -` login shell, `su` non-login shell.
+for vim, add below to home-otheruser/.vimrc, maybe conditionally.
+set rtp^=/home/qeatzy/.vim
+call entry#init()
+
+bash
+ll() { ls -ahl; } cause invalid syntax error, if alias exists, `alias ll='ls -ahl'`.
+function ll() { ls -ahl; }  # dash not support function keyword
+https://unix.stackexchange.com/questions/329994/alias-and-functions
+
+
+to test if ssh, test SSH_*, eg SSH_CLIENT
+https://unix.stackexchange.com/questions/9605/how-can-i-detect-if-the-shell-is-controlled-from-ssh
 
 POSIX requires that the . command exits the shell if it can't open the file for reading and requires that the file be found through a search of the directories in $PATH if the provided path doesn't contain a /.
 https://unix.stackexchange.com/questions/58514/what-is-the-difference-between-and-source-in-shells
