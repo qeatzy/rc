@@ -1,0 +1,6 @@
+cdv()
+{
+  printf '\033]51;["call", "Tapi_lcd", ["%s"]]\007' "$(pwd)"
+}
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd cdv

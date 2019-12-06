@@ -5,6 +5,7 @@ export DEPTH=$((DEPTH+1))
 if [ -n "$depth" ]; then unset VIMRUNTIME; fi
 
 ld() { ls -d */; }
+mcd () { [ "$#" -ne 1 ] && return 1; cd "$1" &> /dev/null || mkdir -p "$1" && cd "$1"; }
 alias vi=vim
 alias v-='vim -'
 alias v.='vim .'
