@@ -17,3 +17,13 @@ rp 13
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-history
+bindkey "^[." insert-last-word
+bindkey "^U" backward-kill-line
+bindkey "^K" kill-line
+bindkey "^E" end-of-line
+bindkey "^A" beginning-of-line
+bindkey "^F" forward-char
+bindkey "^B" backward-char
+bindkey "^[b" backward-word
+bindkey "^[f" forward-word
+

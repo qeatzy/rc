@@ -7,8 +7,10 @@ if [ -n "$depth" ]; then unset VIMRUNTIME; fi
 ld() { ls -d */; }
 mcd () { [ "$#" -ne 1 ] && return 1; cd "$1" &> /dev/null || mkdir -p "$1" && cd "$1"; }
 alias vi=vim
-alias v-='vim -'
+alias v-='vim --not-a-term -'
 alias v.='vim .'
+export PAGER='vim --not-a-term -c "call pager#filter() | 1" -'
+export EDITOR='vim --not-a-term -c "call pager#filter() | 1"'
 # vim profiling
  vp() { \vim --startuptime p.out -c 'set bt=nofile' -c 'call setline(1, "p.out")' -c 'nn f gfG' -c 'nn q ZZ' "$@"; }
 # vp
@@ -22,3 +24,5 @@ alias c-='cd ~-'
 alias c.='cd ..'
 alias c..='cd ../..'
 alias c...='cd ../../..'
+
+ipy() { ipython "$@"; }
