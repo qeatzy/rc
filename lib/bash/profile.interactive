@@ -9,6 +9,7 @@ mcd () { [ "$#" -ne 1 ] && return 1; cd "$1" &> /dev/null || mkdir -p "$1" && cd
 alias vi=vim
 alias v-='vim --not-a-term -'
 alias v.='vim .'
+v8() { find -L -maxdepth 1 -type f -name "*$1*" -exec vim {} +; }
 export PAGER='vim --not-a-term -c "call pager#filter() | 1" -'
 export EDITOR='vim --not-a-term -c "call pager#filter() | 1"'
 # vim profiling

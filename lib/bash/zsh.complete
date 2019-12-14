@@ -1,0 +1,49 @@
+# pe
+# fpath=(/cygdrive/e/nnotes/dev/rc/lib/bash/fpath
+# # fpath=( ~/.zfunc "${fpath[@]}" ) # https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
+# autoload -Uz _pe    # complete for pe, python virtual environment
+
+# meta_s
+# autoload -Uz compinit
+# autoload -Uz compdef
+# compinit
+
+pe() { . "$HOME/venv/$1/bin/activate"; }
+compdef '_files -f -W "$HOME/venv"' pe
+
+compdef gi=git
+
+return $?
+
+https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html
+https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org
+
+function _hello {
+    local line
+
+    _arguments -C \
+        "-h[Show help information]" \
+        "--h[Show help information]" \
+        "1: :(quietly loudly)" \
+        "*::arg:->args"
+
+    case $line[1] in
+        loudly)
+            _hello_loudly
+        ;;
+        quietly)
+            _hello_quietly
+        ;;
+    esac
+}
+
+function _hello_quietly {
+    _arguments \
+        "--silent[Dont output anything]"
+}
+
+function _hello_loudly {
+    _arguments \
+        "--repeat=[Repat the <message> any number of times]"
+}
+compdef _hello hello
