@@ -4,9 +4,25 @@
 # autoload -Uz _pe    # complete for pe, python virtual environment
 
 # meta_s
-# autoload -Uz compinit
 # autoload -Uz compdef
-# compinit
+
+# autoload -Uz compinit && compinit -C
+
+# https://gist.github.com/ctechols/ca1035271ad134841284
+autoload -Uz compinit 
+# echo $ZDOTDIR
+# ls -l ${ZDOTDIR}/.zcompdump
+# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  setopt EXTENDEDGLOB
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.m1) ]]; then
+    echo "too old"
+	compinit;
+    touch ${ZDOTDIR}/.zcompdump;
+else
+	compinit -C;
+fi;
+  unsetopt EXTENDEDGLOB
+# From my experience, compinit won't update the compdump file if it hasn't changed,
 
 pe() { . "$HOME/venv/$1/bin/activate"; }
 compdef '_files -f -W "$HOME/venv"' pe

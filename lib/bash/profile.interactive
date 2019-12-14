@@ -4,6 +4,8 @@ export QEATZY=1
 export DEPTH=$((DEPTH+1))
 if [ -n "$depth" ]; then unset VIMRUNTIME; fi
 
+# [ "${DEPTH:-0}" -lt 1 ] && head -n1 /home/zyq3e/.colors/persist/base16-atelier-dune-256
+
 ld() { ls -d */; }
 mcd () { [ "$#" -ne 1 ] && return 1; cd "$1" &> /dev/null || mkdir -p "$1" && cd "$1"; }
 alias vi=vim

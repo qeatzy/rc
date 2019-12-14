@@ -14,6 +14,7 @@ PROMPT="%F{${1:-12}}%v %T %(1j.%j.)%(!.#.$) %(?..%?)%f" # **need 256 color** tri
 }
 rp 13
 
+# { . $RCROOT/zsh.complete & } &>/dev/null 
 . $RCROOT/zsh.complete
 
 bindkey "^P" up-line-or-search
