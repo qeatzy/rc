@@ -1,13 +1,9 @@
-# pe
-# fpath=(/cygdrive/e/nnotes/dev/rc/lib/bash/fpath
-# # fpath=( ~/.zfunc "${fpath[@]}" ) # https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
-# autoload -Uz _pe    # complete for pe, python virtual environment
-
-# meta_s
-# autoload -Uz compdef
+typeset -Ug fpath   # https://unix.stackexchange.com/questions/62579/
+fpath+=( $RCROOT/fpath)
+f() { echo "${fpath[@]}"; }
+# fpath=( ~/.zfunc "${fpath[@]}" ) # https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
 
 # autoload -Uz compinit && compinit -C
-
 # https://gist.github.com/ctechols/ca1035271ad134841284
 autoload -Uz compinit 
 # echo $ZDOTDIR
@@ -23,13 +19,71 @@ else
 fi;
   unsetopt EXTENDEDGLOB
 # From my experience, compinit won't update the compdump file if it hasn't changed,
+ss() { local FN="$RCROOT/fpath/_zzz"; [ -f "$FN" ] && rm "$FN" || echo '#compdef zzz' > "$FN"; compinit; }
+# ss() { local FN="$RCROOT/fpath/_zzz"; [ -f "$FN" ] && echo rm "$FN"; echo '#compdef zzz > "$FN"'; compinit; }
+sl() { compinit; }
 
-pe() { . "$HOME/venv/$1/bin/activate"; }
-compdef '_files -f -W "$HOME/venv"' pe
+
+setopt menu_complete
+# https://unix.stackexchange.com/questions/12288/zsh-insert-completion-on-first-tab-even-if-ambiguous
+setopt complete_in_word
+# https://unix.stackexchange.com/questions/296988/shell-that-tab-completes-prefix/297000#297000
+
+reload() {
+    local fn
+    for fn in $*; do
+        unfunction $fn
+        autoload -U $fn
+    done
+}
+compdef _functions reload
+
+# autoload -Uz _pe    # complete for pe, python virtual environment
+pe() { [ $# -gt 0 ] && . "$HOME/venv/$1/bin/activate" || (cd "$HOME/venv" && ls -d */); }
+compdef '_files -f -/ -W "$HOME/venv"' pe
+dea() { deactivate 2>/dev/null; }
 
 compdef gi=git
 
+c() {
+# https://stackoverflow.com/questions/40010848/how-to-list-all-zsh-autocompletions
+for command completion in ${(kv)_comps:#-*(-|-,*)}
+do
+    printf "%-32s %s\n" $command $completion
+done | sort
+}
+
+autoload -Uz _hello
+compdef _hello hello
+
+ci() { git commit "$@"; }
+compdef _git_commit ci
+
+# autoload -Uz _-
+# compdef _- -
+compdef _d d
+-() { cd "${1:-$OLDPWD}"; }
+# you can set dirs by `dirs dir-1 dir-2 ...`
+
 return $?
+
+https://unix.stackexchange.com/search?q=user%3A885+%5Bzsh%5D+complete
+
+https://unix.stackexchange.com/questions/532151/complete-something-not-according-to-the-context-in-zsh
+_complete-remotes () {
+  case $words[1] in
+    git) load_helper_functions _git; __git_remotes;;
+    *) _hosts;;
+  esac
+}
+compdef -k _complete-remotes complete-word '^[c'
+
+https://unix.stackexchange.com/questions/85836/zsh-expand-or-complete-for-all-files-regardless-of-command-context/85903#85903
+_complete_files () {
+  eval "$_comp_setup"
+  _main_complete _files
+}
+compdef -k _complete_files complete-word '^X/'
 
 https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html
 https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org

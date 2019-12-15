@@ -14,8 +14,8 @@ PROMPT="%F{${1:-12}}%v %T %(1j.%j.)%(!.#.$) %(?..%?)%f" # **need 256 color** tri
 }
 rp 13
 
-# { . $RCROOT/zsh.complete & } &>/dev/null 
-. $RCROOT/zsh.complete
+setopt  autocd autopushd pushdignoredups
+d() { dirs -v; }
 
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-history
@@ -29,3 +29,23 @@ bindkey "^B" backward-char
 bindkey "^[b" backward-word
 bindkey "^[f" forward-word
 
+b() { bindkey |v- }
+
+# { . $RCROOT/zsh.complete & } &>/dev/null 
+. $RCROOT/zsh.complete
+
+unalias run-help 2>/dev/null
+autoload run-help
+bindkey "^[h" run-help
+alias rh=run-help
+# https://stackoverflow.com/questions/4405382/how-can-i-read-documentation-about-built-in-zsh-commands
+# compdef _run-help vh
+compdef _functions vh
+vh() {
+    # case "$(whence -v $1)" in *"function from"*) whence -v "$1" | vim -;; esac
+    whence -v "$1" | grep "function from" && whence -v "$1" | vim -c 'set noswapfile | norm f/gf' - || run-help "$1";
+    # whence -v "$1" | grep "function"
+    # && whence -v "$1" | vim - || run-help "$1";
+}
+
+fu() { functions "$1"; }
