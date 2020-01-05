@@ -1,0 +1,31 @@
+# rc/unix/doc/unix-user-group/list-users-of-a-group.py
+members() {
+python3 - "$@" <<'EOF'
+import sys
+import subprocess
+from pprint import pprint
+x = subprocess.getoutput('getent passwd|cut -d: -f1')
+# print(x.split())
+groups = {user: subprocess.getoutput('id -Gn {}'.format(user)).split() for user in x.split()}
+# pprint(groups)
+def revdict(d):
+    rv = {}
+    for key,lst in d.items():
+        for x in lst:
+            if x in rv:
+                rv[x].append(key)
+            else:
+                rv[x] = [key]
+    return rv
+
+g2u = revdict(groups)
+# print(g2u['nogroup'])
+x = sorted(g2u.items(), key=lambda x: len(x[1]), reverse=True)
+if len(sys.argv) > 1:
+    [print(' '.join(g2u[group])) for group in sys.argv[1:]]
+else:
+    pprint(x)
+EOF
+}
+members "$@";
+

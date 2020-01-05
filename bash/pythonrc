@@ -1,0 +1,85 @@
+# from pythonrc import *
+# from u.pythonrc import *
+try:
+    from u.pythonrc import *
+except ModuleNotFoundError:
+    pass
+
+import sys
+import traceback as tb
+
+import re
+
+__cfile__ = os.getenv('RCROOT') + '/pythonrc'
+def reload():
+    global __cfile__
+    exec(open(__cfile__).read())
+    # sys.modules.pop('sitecustomize',None)
+    # exec('from sitecustomize import *')
+
+try:
+    __mtime__
+except NameError:
+    __mtime__ = os.path.getmtime(__cfile__)
+def reload_if_changed():
+    global __cfile__, __mtime__
+    mtime = os.path.getmtime(__cfile__)
+    if mtime > __mtime__:
+        # reload()
+        exec(open(__cfile__).read())
+        __mtime__ = mtime
+        return True
+
+import builtins
+builtins.s = reload
+
+exec('builtins.a = getattr(builtins,"a",0) + 1')
+
+def foo(exc_type, value, traceback):
+    if reload_if_changed():
+        print("changed")
+        # return foo(exc_type, value, traceback)
+        return globals()['foo'](exc_type, value, traceback)
+    # print(type(exc_type), exc_type, type(value), value,type(traceback))
+    # import ipdb; ipdb.set_trace()
+    # from IPython import embed
+    # if not exc_type is SyntaxError:
+    if not hasattr(value, 'text'):
+        return sys.__excepthook__(exc_type, value, traceback)
+    print(re.search(r"(?<=')[^']*", str(exc_type)).group(), value.text)
+    cmd = value.text.strip()
+    # print(len(cmd))
+    if cmd == ';s':
+        reload()
+        return
+    if cmd[-1] == '?':
+    # if re.search(r'^[._a-zA-Z0-9]+\?$', cmd):
+        # print(cmd, cmd[:-1].split('.'))
+        cmd = cmd[:-1].rstrip('(')
+        exec('help({})'.format(cmd), globals())
+        return
+    m = re.search(r'((?<=^vi\b)|(?<=^;vi\b)).*', cmd)
+    # print(len(cmd), cmd[:4])
+    print(cmd[:4])
+    if m:
+        cmd = m.group().strip()
+        obj = eval(cmd)
+        try:
+            vi(obj)
+        except OSError:
+            print(f"could not get source code for {cmd}")
+
+sys.excepthook = foo
+
+# def bar(value):
+#     reload_if_changed()
+#     sys.__displayhook__(value)
+# 
+# sys.displayhook = bar
+
+
+# import os, sys
+# # import site
+# import re, types
+# 
+# # vim: ft=python

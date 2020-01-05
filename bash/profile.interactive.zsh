@@ -17,6 +17,9 @@ rp 13
 setopt  autocd autopushd pushdignoredups
 d() { dirs -v; }
 
+bindkey "^Q" up-line-or-search
+
+bindkey "^R" history-incremental-search-backward
 bindkey "^P" up-line-or-search
 bindkey "^N" down-line-or-history
 bindkey "^[." insert-last-word
@@ -49,3 +52,27 @@ vh() {
 }
 
 fu() { functions "$1"; }
+
+
+
+export ip0=155.138.229.11
+# r ~/.ssh/config
+fa() {
+bash <<'EOF'
+f() { echo >/dev/tcp/${2-$ip0}/$1 && echo "port $1 is open" || echo "port $1 is closed"; }
+fa() {
+ports=$(python -c '
+import json, sys
+x = json.loads(sys.stdin.read())
+print(" ".join(x["port_password"].keys()))
+' < "$RCROOT/../shadowsocks/run/shadowsocks.json"
+)
+for i in $ports; do f "$i" "$@"; done
+}
+fa
+EOF
+}
+
+sspull() {
+    (cd "$RCROOT/../shadowsocks/run" && scp vpn:/etc/shadowsocks.json . )
+}

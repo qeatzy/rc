@@ -29,3 +29,23 @@ alias c..='cd ../..'
 alias c...='cd ../../..'
 
 ipy() { ipython "$@"; }
+
+
+proxy () {
+    case $1 in
+        -k)
+            unset http_proxy
+            unset https_proxy
+            echo "HTTP Proxy off"
+            ;; -[nh])
+            [ $http_proxy ] && echo "HTTP Proxy on" || echo "HTTP Proxy off";
+            ;; -[q])
+            [ $http_proxy ] && echo "$http_proxy $https_proxy" || echo "HTTP Proxy off";
+            ;; *)
+            export http_proxy="http://127.0.0.1:1082"
+            export https_proxy="http://127.0.0.1:1082"
+            echo "HTTP Proxy on"
+    esac
+}
+alias to=proxy
+

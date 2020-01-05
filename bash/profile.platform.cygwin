@@ -1,0 +1,6 @@
+
+function settitle() { echo -ne '\e]0;'"${1--bash}"'\a'; }
+function st() { echo -ne '\e]0;'"${1--bash}"'\a'; }
+function stt() { echo -ne '\e]0;'"${1--bash}"'\a'; }
+
+function e.() { cygstart .; }

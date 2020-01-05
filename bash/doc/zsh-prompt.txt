@@ -1,0 +1,4 @@
+zsh open line in editor
+bindkey -M vicmd v edit-command-line
+https://unix.stackexchange.com/questions/6620/how-to-edit-command-line-in-full-screen-editor-in-zsh
+https://nuclearsquid.com/writings/edit-long-commands/

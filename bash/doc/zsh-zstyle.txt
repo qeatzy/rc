@@ -1,0 +1,10 @@
+
+https://unix.stackexchange.com/questions/15228/zsh-tab-completion-only-complete-files-and-not-binaries/15235#15235
+For example, to ignore *.o files when completing files to edit with vim, you can put this in your .zshrc:
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.o'
+
+https://unix.stackexchange.com/questions/2179/rebuild-auto-complete-index-or-whatever-its-called-and-binaries-in-path-cach/2180#2180
+zstyle ":completion:*:commands" rehash 1
+The zstyle command itself is documented in the zshmodule man page. The styles values are documented in the zshcompsys and zshcompwid man pages, or you can read the source (here, of the _command_names function). If you wanted some readable documentation… if you find some, let me know!
+...
+completion files (fpath element files that start with #compdef … or #autoload …).

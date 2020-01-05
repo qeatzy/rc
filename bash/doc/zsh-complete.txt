@@ -1,0 +1,33 @@
+echo $FPATH
+echo ${fpath[@]}
+
+# fpath/hello (function file)
+# ...
+# tail of file
+# If this is left out, the functionality implemented by the newly
+# defined "hello" function is not executed upon its first call. So:
+hello "$@"
+https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
+
+
+@TuyenPham You don't need an explicit autoload statement if the function is in a file in $fpath when you run compinit and the file starts with a #compdef or #autoload line. – Gilles 'SO- stop being evil' Jan 26 at 14:48
+@TuyenPham You can have multiple names after #compdef, but that gives you one function that's used to complete multiple commands. You can't put multiple functions in the same file (except auxiliary functions for the main function, but only the main function gets autoloaded). – Gilles 'SO- stop being evil' Jan 27 at 18:53
+https://unix.stackexchange.com/questions/496621/zsh-manually-load-completion-functions
+
+https://unix.stackexchange.com/questions/535509/how-to-properly-make-custom-zsh-completions-just-work
+.zcompdump is a cache file used by compinit. ~/.zcompdump is the default location; you can choose a different location when running compinit. Oh-my-zsh calls compinit with the -d option to use a different cache file name given by the variable ZSH_COMPDUMP.
+I think all of your problems are due to a stale cache file (and that's made you overcomplicate the situation). Unfortunately, zsh's algorithm to determine whether the cache file is stale is not perfect, presumably in the interest of speed. It doesn't check the content or the timestamps of the files on $fpath, it just counts them. A .zcompdump file starts with a line like
+#files: 858     version: 5.1.1
+If the zsh version and the number of files are correct, zsh loads the cache file.
+The cache file only contains associations between command names, not the code of completion functions. Here's are some common scenarios where the cache works transparently:
+
+autoload -Uz vcs_info
+The -U means mark the function vcs_info for autoloading and suppress alias expansion. The -z means use zsh (rather than ksh) style. See also the functions command.
+So it records the fact that the name is a function and not an external program - it does not call it unless the -X option is used, it just affects the search path when it is called. If the function name does not collide with the name of a program then it is not required. Prefix your functions with something like f_ and you will probably never need it. 
+https://stackoverflow.com/questions/30840651/what-does-autoload-do-in-zsh
+
+https://stackoverflow.com/questions/4493173/z-shell-autoload-builtin-what-is-it-good-for/4493687#4493687
+According to the zshbuiltins(1) man page autoload is "equivalent to functions -u" (with an exception), which is "equivalent to typeset -f" (with an exception). However, after looking at the autlooad use of, say functions/Prompts/promptinit, I think I have an idea what it does.
+
+IRRC The +X is only necessary for KSH-like functions.
+https://stackoverflow.com/questions/24583863/how-do-i-organize-my-zsh-code-multiple-methods-in-single-file-vs-multiple-files

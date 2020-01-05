@@ -1,0 +1,4 @@
+#compdef _pe pe
+
+_pe {
+}

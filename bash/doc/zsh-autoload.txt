@@ -1,0 +1,5 @@
+https://unix.stackexchange.com/questions/429169/how-to-make-custom-zsh-script-executable-automatically
+http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Autoloaded-files
+https://unix.stackexchange.com/questions/33255/how-to-define-and-load-your-own-shell-function-in-zsh
+https://stackoverflow.com/questions/4493173/z-shell-autoload-builtin-what-is-it-good-for/4493687#4493687
+https://stackoverflow.com/questions/24583863/how-do-i-organize-my-zsh-code-multiple-methods-in-single-file-vs-multiple-files

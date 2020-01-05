@@ -1,0 +1,15 @@
+
+https://blog.confirm.ch/zsh-tips-file-picking/
+https://unix.stackexchange.com/questions/504704/zsh-loop-files-ignore-certain-patterns-no-ls-or-find
+https://stackoverflow.com/questions/28599346/how-to-loop-through-all-the-files-located-under-a-certain-path-in-zsh
+https://stackoverflow.com/questions/24583863/how-do-i-organize-my-zsh-code-multiple-methods-in-single-file-vs-multiple-files
+https://stackoverflow.com/questions/30840651/what-does-autoload-do-in-zsh
+
+
+N   sets the NULL_GLOB option for the current pattern 
+.   plain files
+-   toggles between making the qualifiers work on symbolic links (the default) and the files they point to
+If a ':' appears in a qualifier list, the remainder of the expression in parenthesis is interpreted as a modifier (see Modifiers in History Expansion). 
+http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation
+echo /tmp/foo*(u0^@:t)
+outputs the basename of all root-owned files beginning with the string ‘foo’ in /tmp, ignoring symlinks, and 

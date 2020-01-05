@@ -1,0 +1,5 @@
+profile.bash:5:    [ -z "$platform" ] && read -n 10 platform < "$RCROOT/platform"
+profile.bash:6:    [ -n "$platform" ] && export platform && source "$RCROOT/profile.platform.$platform"
+profile.zsh:6:    [ -z "$platform" ] && read -n 10 platform < "$RCROOT/platform"
+profile.zsh:7:    [ -n "$platform" ] && export platform && source "$RCROOT/profile.platform.$platform"
+zsh.complete:15:    source $RCROOT/run/platform

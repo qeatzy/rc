@@ -1,0 +1,3 @@
+
+The wizard is provided by the function zsh-newuser-install.
+https://unix.stackexchange.com/questions/108136/run-the-zsh-first-use-wizard

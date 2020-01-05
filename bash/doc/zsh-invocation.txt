@@ -1,0 +1,19 @@
+
+https://blog.jonlu.ca/posts/speeding-up-zsh
+zsh -xv
+This enables xtraceing and verbose output.
+The second is an order-blind profiler - at the top of .zshrc, insert zmodload zsh/zprof. This will enable the built in profiling.
+At the end of .zshrc insert zprof.
+for i in {1..10}; do time bash -i -c exit; done
+for i in {1..10}; do time zsh -i -c exit; done
+
+https://htr3n.github.io/2018/07/faster-zsh/
+
+
+https://peterlyons.com/problog/2018/01/zsh-lazy-loading/
+The trick is you define a shell function yourself matching the name of the third party utility shell function. 
+function name is nvm, script nvm inside $fpath. autoload -Uz nvm
+
+
+load order of startup scripts
+https://unix.stackexchange.com/questions/246751/how-to-know-why-and-where-the-path-env-variable-is-set

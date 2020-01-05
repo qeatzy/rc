@@ -1,0 +1,13 @@
+
+if [ -n "$ZSH_VERSION" ]; then
+typeset -Ug path
+path[1,0]=/cygdrive/c/pkg/dt/python3.7.4/Scripts
+path[1,0]=/cygdrive/c/pkg/dt/python3.7.4
+fi
+
+py() { python "$@"; }
+pip() { python -m pip "$@"; }
+# export PYTHONSTARTUP="$RCROOT/pythonrc"
+export PYTHONSTARTUP="E:/nnotes/dev/rc/lib/bash/pythonrc"
+export PYTHONPATH="E:/nnotes/dev/python/lib"
+

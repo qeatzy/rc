@@ -1,0 +1,23 @@
+
+whence -v function_name     # 5.3 works
+https://superuser.com/questions/707354/locating-the-source-of-a-function-in-zsh
+whence -f foo
+https://stackoverflow.com/questions/11478673/how-to-show-zsh-function-definition-like-bash-type-myfunc
+functions      # show all function definition
++1; Note that functions is equivalent to typeset -f (except for the -M option), so you can even use the grammatically slightly counter-intuitive command functions foo to get information about a given function. – mklement0 Nov 13 '14 at 14:58
+
+
+
+
+    autoload +X myfunc
+    To load the definition of an autoloaded function myfunc without executing myfunc, use:
+https://stackoverflow.com/questions/11627324/zsh-search-for-function-definition
+
+
+for action in status start stop restart
+do
+    $action() {
+        systemctl $0 "$@"
+    }
+done
+https://stackoverflow.com/questions/56534742/is-it-possible-to-define-a-function-dynamically-in-zsh

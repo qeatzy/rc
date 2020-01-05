@@ -12,6 +12,7 @@ autoload -Uz compinit
   setopt EXTENDEDGLOB
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.m1) ]]; then
     echo "too old"
+    source $RCROOT/run/platform
 	compinit;
     touch ${ZDOTDIR}/.zcompdump;
 else
@@ -56,8 +57,9 @@ done | sort
 autoload -Uz _hello
 compdef _hello hello
 
-ci() { git commit "$@"; }
+# ci() { git commit "$@"; }
 compdef _git_commit ci
+gl() { git log "$@"; }
 
 # autoload -Uz _-
 # compdef _- -

@@ -12,6 +12,7 @@ py() { python3 "$@"; }
 pip() { python3 -m pip "$@"; }
 
 gi () { if (($# == 0)); then git status; else git "$@"; return $?; fi }
+ci() { git commit "$@"; }
 
 # meta_s from ~/notes/task/bash/meta_source.sh
 if [ -n "$ZSH_VERSION" ]; then

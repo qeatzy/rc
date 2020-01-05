@@ -1,0 +1,24 @@
+
+cat <<EOF > p.out
+a=`echo $1 | awk -F. '{print $NF}'`
+b=`echo $2 | tr '[:upper:]' '[:lower:]'`
+EOF
+======== result ==========
+a=
+b=
+
+cat <<'EOF' > p.out
+a=`echo $1 | awk -F. '{print $NF}'`
+b=`echo $2 | tr '[:upper:]' '[:lower:]'`
+EOF
+======== result ==========
+a=`echo $1 | awk -F. '{print $NF}'`
+b=`echo $2 | tr '[:upper:]' '[:lower:]'`
+
+https://stackoverflow.com/questions/34380315/bash-tries-to-execute-commands-in-heredoc
+
+bash <<EOF
+echo `date`
+EOF
+
+treat `<<EOF ... EOF` as a file.
