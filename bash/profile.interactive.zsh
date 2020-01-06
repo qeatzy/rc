@@ -65,7 +65,7 @@ ports=$(python -c '
 import json, sys
 x = json.loads(sys.stdin.read())
 print(" ".join(x["port_password"].keys()))
-' < "$RCROOT/../shadowsocks/run/shadowsocks.json"
+' < "$RCROOT/../lib/shadowsocks/run/shadowsocks.json"
 )
 for i in $ports; do f "$i" "$@"; done
 }

@@ -10,13 +10,13 @@ autoload -Uz compinit
 # ls -l ${ZDOTDIR}/.zcompdump
 # if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
   setopt EXTENDEDGLOB
-if [[ -n ${ZDOTDIR}/.zcompdump(#qN.m1) ]]; then
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.m-1) ]]; then
+	compinit -C;
+else
     echo "too old"
     source $RCROOT/run/platform
 	compinit;
     touch ${ZDOTDIR}/.zcompdump;
-else
-	compinit -C;
 fi;
   unsetopt EXTENDEDGLOB
 # From my experience, compinit won't update the compdump file if it hasn't changed,

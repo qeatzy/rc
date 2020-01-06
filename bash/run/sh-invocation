@@ -1,0 +1,3 @@
+# /bin/sh as login shell
+# put below in ~/.profile
+ENV=$HOME/.vim/rc/lib/bash/profile.interactive.sh; export ENV

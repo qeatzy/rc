@@ -1,0 +1,16 @@
+[ "$platform" ] && return
+case `uname -s` in 
+    CYGWIN*) platform=cygwin;;
+    Linux)
+        platform=`sed -ne '/^ID=/{s/ID=//p;q}' /etc/os-release`;;
+esac
+if [ "$RCROOT" ]; then echo $platform > "$RCROOT/platform"; fi
+return $?
+
+https://askubuntu.com/questions/459402/how-to-know-if-the-running-platform-is-ubuntu-or-centos-with-help-of-a-bash-scri
+https://unix.stackexchange.com/questions/29981/how-can-i-tell-whether-a-build-is-debian-based
+
+        if [ -f /etc/debian_version ]; then echo debian based; fi
+        case `lsb_release` in
+            *ubuntu*) platform=ubuntu;;
+        esac
